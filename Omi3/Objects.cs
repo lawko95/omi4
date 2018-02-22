@@ -1,5 +1,5 @@
 ﻿using System;
-namespace omiform
+namespace Omi3
 {
 	public class BodyObject
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-namespace omiform
+namespace Omi3
 {
     //test
     public class Space
