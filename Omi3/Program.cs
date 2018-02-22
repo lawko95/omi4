@@ -19,9 +19,9 @@ namespace Omi3
 			var ls = new BodyObject[2];
 			ls[0] = new BodyObject(new Vector(1, 0), 3000000000, new Vector(0, -0.01), "a");
 			ls[1] = new BodyObject(new Vector(15, 0), 3000000000, new Vector(0, 0.01), "b");
-			var f = new Form1(ls);
+			var c = new Controller(ls, 1);
+			var f = new Form1(c);
 			Application.Run(f);
-			var c = new Controller(ls, 1, 100, f);
         }
     }
 }

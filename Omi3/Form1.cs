@@ -15,12 +15,14 @@ namespace Omi3
     {
         private Space space;
         private PictureBox pb;
-        public Form1(BodyObject[] _ls)
+        private Controller c;
+        public Form1(Controller _c)
         {
+            c = _c;
             Size = new Size(500, 500);
             InitializeComponent();
             space = new Space(500, 500, 1);
-            Bitmap bm = space.Make(_ls);
+            Bitmap bm = space.Make(c.bodies);
             pb = new PictureBox();
             pb.Size = new Size(500, 500);
             pb.Image = bm;
