@@ -34,5 +34,17 @@ namespace Omi3
             pb.Image = bm;
             this.Invalidate();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(50);
+                var ls = c.DoStep();
+                var bm = space.Make(ls);
+                pb.Image = bm;
+                Refresh();
+            }
+        }
     }
 }
