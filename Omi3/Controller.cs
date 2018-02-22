@@ -7,11 +7,17 @@ namespace Omi3
 		private TwoBodies[] connections;
 		private double timeStep;
 
-		public Controller(BodyObject[] bs, double dt, int steps)
+		public Controller(BodyObject[] bs, double dt, int steps, Form1 f)
 		{
 			bodies = bs;
 			timeStep = dt;
 			makeConnections();
+            for (int i = 0; i < steps; i++){
+                calcNewForce();
+                doStep();
+                f.UpdateSym(bodies);
+                System.Threading.Thread.Sleep(100);
+            }
 		}
 
 		public BodyObject[] DoStep()
