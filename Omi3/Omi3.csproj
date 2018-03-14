@@ -78,6 +78,7 @@
     <Compile Include="Objects.cs" />
     <Compile Include="Space.cs" />
     <Compile Include="HeuristicHandler.cs" />
+    <Compile Include="Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

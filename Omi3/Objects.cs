@@ -42,6 +42,11 @@ namespace Omi3
 		{
 			return Name + ":: l = " + Location.Print() + ", v = " + Velocity.Print();
 		}
+
+        public BodyObject Copy(){
+            var res = new BodyObject(Location.Copy(), Mass, Velocity.Copy(), Name);
+            return res;
+        }
 	}
 
 	public struct Vector
@@ -100,6 +105,11 @@ namespace Omi3
 		{
 			return "(" + X + ", " + Y + ")";
 		}
+
+        public Vector Copy(){
+            var res = new Vector(X, Y);
+            return res;
+        }
 	}
 
 	public struct TwoBodies
@@ -112,5 +122,10 @@ namespace Omi3
 			A = a;
 			B = b;
 		}
+
+        public TwoBodies Copy(){
+            var res = new TwoBodies(A.Copy(), B.Copy());
+            return res;
+        }
 	}
 }
