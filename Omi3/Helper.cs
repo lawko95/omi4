@@ -3,7 +3,7 @@ namespace Omi3
 {
     public static class Helper
     {
-        public static double CalcDist(BodyObject[] a, BodyObject[] b){
+        public static double CalcDistAbs(BodyObject[] a, BodyObject[] b){
             double res = 0.0;
             for (int i = 0; i < a.Length && i < b.Length; i++){
                 res += Math.Pow(a[i].Location.Dist(b[i].Location), 2);
@@ -11,6 +11,7 @@ namespace Omi3
             return res;
         }
 
+<<<<<<< HEAD
         public static BodyObject[] bodyObjectList(int i)
         {
             var ls = new BodyObject[i];
@@ -21,5 +22,19 @@ namespace Omi3
             }
             return ls;
         }
+=======
+>>>>>>> 2b368faac5c59e5e57bc4763859f4d030b85a3d1
     }
 }
+
+
+/*
+public static double CalcDistRel(BodydObject[] a, BodyObject[] b){
+	double res = 0.0;
+	for (int i = 0; i < a.Length && i < b.Length; i++){
+		for (int j = 0; j < a.Length &&j < b.Length; j++){
+			//res += Math.Abs()
+		}
+	}
+	return res;
+}*/

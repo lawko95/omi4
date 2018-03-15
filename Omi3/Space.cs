@@ -20,16 +20,20 @@ namespace Omi3
 		public Bitmap Make(BodyObject[] elems)
 		{
 			var bm = new Bitmap(x, y);
-			foreach (BodyObject b in elems)
-			{
-				var p = vtp(b.Location);
+            foreach (BodyObject b in elems)
+            {
+                var p = vtp(b.Location);
                 Console.WriteLine(b.Location.Print());
-                if (inBound(p))
-                {
-                    bm.SetPixel(p.X, p.Y, Color.Red);
-                }
-                else{
-                    Console.WriteLine(p.X + ", " + p.Y);
+                var ps = dialate(p);
+                foreach (Point pi in ps) { 
+                    if (inBound(pi))
+                    {
+                        bm.SetPixel(pi.X, pi.Y, Color.Red);
+                    }
+                    else
+                    {
+                        Console.WriteLine(pi.X + ", " + pi.Y);
+                    }
                 }
 			}
 			return bm;
@@ -51,6 +55,20 @@ namespace Omi3
             double nx = p.X * zoom + (double) middle.X;
             double ny = p.Y * zoom + (double)middle.Y;
             return new Point((int) nx, (int) ny);
+        }
+
+        private Point[] dialate(Point p){
+            Point[] res = {
+				new Point(p.X + 1, p.Y + 1),
+				new Point(p.X + 1, p.Y - 1),
+				new Point(p.X + 1, p.Y + 0),
+				new Point(p.X - 1, p.Y + 1),
+				new Point(p.X - 1, p.Y - 1),
+				new Point(p.X - 1, p.Y + 0),
+				new Point(p.X + 0, p.Y + 1),
+				new Point(p.X + 0, p.Y - 1),
+				new Point(p.X + 0, p.Y + 0)};
+            return res;
         }
     }
 }
