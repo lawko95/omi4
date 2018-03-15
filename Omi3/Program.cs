@@ -29,7 +29,7 @@ namespace Omi3
             {
                 Console.WriteLine(bo.Print());
             }
-            var c = new Controller(ks, 1, true, ks.Length, ks.Length);
+            var c = new Controller(ks, 1, false, ks.Length, ks.Length);
 			var f = new Form1(c);
 			Application.Run(f);
         }

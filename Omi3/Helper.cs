@@ -11,7 +11,6 @@ namespace Omi3
             return res;
         }
 
-<<<<<<< HEAD
         public static BodyObject[] bodyObjectList(int i)
         {
             var ls = new BodyObject[i];
@@ -22,8 +21,6 @@ namespace Omi3
             }
             return ls;
         }
-=======
->>>>>>> 2b368faac5c59e5e57bc4763859f4d030b85a3d1
     }
 }
 
