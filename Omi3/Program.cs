@@ -16,11 +16,20 @@ namespace Omi3
         {
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+            var ks = Helper.bodyObjectList(20);
+            foreach(BodyObject bo in ks)
+            {
+                Console.WriteLine(bo.Print());
+            }
 			var ls = new BodyObject[3];
-			ls[0] = new BodyObject(new Vector(1, 0), 3000000000, new Vector(0, -0.01), "a");
+			ls[0] = new BodyObject(new Vector(1, 200), 3000000000, new Vector(0, -0.01), "a");
 			ls[1] = new BodyObject(new Vector(15, 0), 3000000000, new Vector(0, 0.01), "b");
 			ls[2] = new BodyObject(new Vector(7, 0), 3000000000, new Vector(0, 0.03), "c");
-            var c = new Controller(ls, 1, true, ls.Length, ls.Length);
+            foreach(BodyObject bo in ls)
+            {
+                Console.WriteLine(bo.Print());
+            }
+            var c = new Controller(ks, 1, true, ks.Length, ks.Length);
 			var f = new Form1(c);
 			Application.Run(f);
         }
