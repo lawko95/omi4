@@ -92,7 +92,7 @@ namespace Omi3
 			foreach (BodyObject b in bodies)
 			{
 				b.DoStep(timeStep);
-				Console.WriteLine(b.Print());
+				//Console.WriteLine(b.Print());
 				b.ResetF();
 			}
 		}

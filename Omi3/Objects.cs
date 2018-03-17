@@ -8,6 +8,7 @@ namespace Omi3
 		public double Mass;
 		public Vector Velocity;
 		public Vector Force;
+        public double TDist;
 		public BodyObject(Vector location, double mass, Vector velocity, string name = "Generic")
 		{
 			Location = location;
@@ -15,6 +16,7 @@ namespace Omi3
 			Velocity = velocity;
 			Force = new Vector(0.0, 0.0);
 			Name = name;
+            TDist = 0.0;
 		}
 
 		public void ResetF()
@@ -29,8 +31,10 @@ namespace Omi3
 
 		public void DoStep(double dt)
 		{
+            var ol = Location.Copy();
 			Velocity = Velocity + Force.Div(Mass).Mult(dt);
 			Location = Location + Velocity.Mult(dt);
+            TDist += ol.Dist(Location);
 		}
 
 		public static BodyObject operator +(BodyObject a, BodyObject b)
@@ -93,6 +97,11 @@ namespace Omi3
 			vec.Norm();
 			return vec;
 		}
+
+		public double Lenth()
+		{
+			return Math.Sqrt(Math.Pow(X, 2.0) + Math.Pow(Y, 2.0));
+        }
 
 		public void Norm()
 		{

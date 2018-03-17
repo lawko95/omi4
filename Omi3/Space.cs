@@ -25,6 +25,7 @@ namespace Omi3
                 var p = vtp(b.Location);
                 Console.WriteLine(b.Location.Print());
                 var ps = dialate(p);
+                var print = false;
                 foreach (Point pi in ps) { 
                     if (inBound(pi))
                     {
@@ -32,7 +33,11 @@ namespace Omi3
                     }
                     else
                     {
-                        Console.WriteLine(pi.X + ", " + pi.Y);
+                        if (print)
+                        {
+                            Console.WriteLine(p.X + ", " + p.Y);
+                            print = false;
+                        }
                     }
                 }
 			}

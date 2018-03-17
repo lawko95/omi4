@@ -16,22 +16,24 @@ namespace Omi3
         {
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-            var ks = Helper.bodyObjectList(20);
-            foreach(BodyObject bo in ks)
-            {
-                Console.WriteLine(bo.Print());
+            var ksControl = Helper.bodyObjectList(20);
+            var ksTest = Helper.CopyObjectList(ksControl);
+            var cc = new Controller(ksControl, 1, false, ksControl.Length, ksControl.Length);
+			var ct = new Controller(ksTest, 1, true, ksTest.Length, ksTest.Length);
+            for (int i = 0; i < 1000; i++){
+                cc.DoStep();
+                ct.DoStep();
+                if(i % ksControl.Length == 2){
+                    Console.WriteLine(Helper.CalcDistRel(cc.bodies, ct.bodies) / Math.Pow(Helper.TotalDist(cc.bodies), 2));
+                }
             }
-			var ls = new BodyObject[3];
-			ls[0] = new BodyObject(new Vector(1, 200), 3000000000, new Vector(0, -0.01), "a");
-			ls[1] = new BodyObject(new Vector(15, 0), 3000000000, new Vector(0, 0.01), "b");
-			ls[2] = new BodyObject(new Vector(7, 0), 3000000000, new Vector(0, 0.03), "c");
-            foreach(BodyObject bo in ls)
-            {
-                Console.WriteLine(bo.Print());
-            }
-            var c = new Controller(ks, 1, false, ks.Length, ks.Length);
+            Console.WriteLine("End");
+            Console.WriteLine(Helper.TotalDist(cc.bodies));
+            Console.WriteLine(Helper.TotalDist(ct.bodies));
+            Console.WriteLine(Helper.CalcDistRel(cc.bodies, ct.bodies));
+            /*
 			var f = new Form1(c);
-			Application.Run(f);
+			Application.Run(f);*/
         }
     }
 }
