@@ -11,6 +11,11 @@ namespace Omi3
             return res;
 		}
 
+        public static double Score(Controller c, Controller t){
+            var dis = Helper.TotalDist(c.bodies);
+            return Helper.CalcDistRel(c.bodies, t.bodies) / (dis * (dis * (dis - 1) / 2));
+        }
+
 		public static double CalcDistRel(BodyObject[] a, BodyObject[] b)
 		{
 			double res = 0.0;
@@ -49,6 +54,14 @@ namespace Omi3
                 ls[j] = new BodyObject(new Vector(rnd.Next(-250, 250), rnd.Next(-250, 250)), (double)rnd.Next(5, 100) * 100000000.0, new Vector(rnd.NextDouble() - 0.5, rnd.NextDouble() - 0.5));
             }
             return ls;
+        }
+
+        public static double DToString(double d){
+            d *= 1000;
+            if (d < 0.0001){
+                return 0.0;
+            }
+            return d;
         }
     }
 }

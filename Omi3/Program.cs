@@ -16,21 +16,28 @@ namespace Omi3
         {
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-            var ksControl = Helper.bodyObjectList(20);
-            var ksTest = Helper.CopyObjectList(ksControl);
-            var cc = new Controller(ksControl, 1, false, ksControl.Length, ksControl.Length);
-			var ct = new Controller(ksTest, 1, true, ksTest.Length, ksTest.Length);
-            for (int i = 0; i < 1000; i++){
-                cc.DoStep();
-                ct.DoStep();
-                if(i % ksControl.Length == 2){
-                    Console.WriteLine(Helper.CalcDistRel(cc.bodies, ct.bodies) / Math.Pow(Helper.TotalDist(cc.bodies), 2));
+            // Inputs
+            int tests = 10;
+            int n =     20;
+            int gens =  50;
+            for (int it = 0; it < tests; it++)
+            {
+                var ksControl = Helper.bodyObjectList(n);
+                var ksTest = Helper.CopyObjectList(ksControl);
+                var cc = new Controller(ksControl, 1, false, ksControl.Length, ksControl.Length);
+                var ct = new Controller(ksTest, 1, true, ksTest.Length, ksTest.Length);
+                for (int i = 0; i < n * gens; i++)
+                {
+                    cc.DoStep();
+                    ct.DoStep();
+                    if (i % ksControl.Length == 2)
+                    {
+                        Console.Write(Helper.DToString(Helper.Score(cc, ct)) + ",");
+                    }
                 }
+                Console.WriteLine();
             }
-            Console.WriteLine("End");
-            Console.WriteLine(Helper.TotalDist(cc.bodies));
-            Console.WriteLine(Helper.TotalDist(ct.bodies));
-            Console.WriteLine(Helper.CalcDistRel(cc.bodies, ct.bodies));
+            Console.ReadLine();
             /*
 			var f = new Form1(c);
 			Application.Run(f);*/
