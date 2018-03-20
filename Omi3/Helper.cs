@@ -16,6 +16,18 @@ namespace Omi3
             return Helper.CalcDistRel(c.bodies, t.bodies) / (dis * (dis * (dis - 1) / 2));
         }
 
+		public static double EPres(BodyObject[] a, BodyObject[] b)
+		{
+			double ae = 0.0;
+            double be = 0.0;
+			for (int i = 0; i < a.Length && i < b.Length; i++)
+			{
+				ae += 0.5 * a[i].Mass * Math.Pow(a[i].Velocity.Lenth(), 2);
+				be += 0.5 * b[i].Mass * Math.Pow(b[i].Velocity.Lenth(), 2);
+			}
+			return ae / be;
+        }
+
 		public static double CalcDistRel(BodyObject[] a, BodyObject[] b)
 		{
 			double res = 0.0;
@@ -57,7 +69,7 @@ namespace Omi3
         }
 
         public static double DToString(double d){
-            d *= 1000;
+            d *= 1;
             if (d < 0.0001){
                 return 0.0;
             }
