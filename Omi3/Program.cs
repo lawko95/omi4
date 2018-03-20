@@ -26,12 +26,10 @@ namespace Omi3
             {
                 var ksControl = Helper.bodyObjectList(n);
                 var ksTest = Helper.CopyObjectList(ksControl);
-                //var cc = new Controller(ksControl, 1, false, ksControl.Length, ksControl.Length);
 				var ct = new Controller(ksTest, 1, true, ksTest.Length, ksTest.Length);
 				sw.Start();
                 for (int i = 0; i < steps; i++)
                 {
-                    //cc.DoStep();
                     ct.DoStep();
                     if (i % 100 == 2)
                     {
@@ -41,7 +39,6 @@ namespace Omi3
                 sw.Stop();
                 Console.WriteLine();
             }
-            Console.WriteLine(sw.ElapsedMilliseconds);
             Console.ReadLine();
             /*
 			var f = new Form1(c);
