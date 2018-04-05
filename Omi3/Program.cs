@@ -17,23 +17,27 @@ namespace Omi3
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             // Inputs
-            int tests   = 50;
+            int tests   = 20;
             int n       = 20;
-            //int gens    = 50;
             int steps   = 2000;
+            int nln = n + (int)Math.Log(n);
             var sw = new System.Diagnostics.Stopwatch();
             for (int it = 0; it < tests; it++)
             {
                 var ksControl = Helper.bodyObjectList(n);
                 var ksTest = Helper.CopyObjectList(ksControl);
-				var ct = new Controller(ksTest, 1, true, ksTest.Length, ksTest.Length);
+                var ksBF = Helper.CopyObjectList(ksControl);
+				var ct = new Controller(ksTest, 1, true, nln, n);
+                var cbf = new Controller(ksBF, 1, false, nln, n);
 				sw.Start();
                 for (int i = 0; i < steps; i++)
                 {
                     ct.DoStep();
+                    cbf.DoStep();
                     if (i % 100 == 2)
                     {
-                        Console.Write(Helper.DToString(Helper.EPres(ksControl, ct.bodies)) + ",");
+                        Console.Write(Helper.DToString(Helper.CalcXoXt(ksControl, cbf.bodies, ct.bodies)) + ",");
+                        //Console.Write(Helper.DToString(Helper.EPres(ksControl, ct.bodies)) + ",");
                     }
                 }
                 sw.Stop();
